@@ -212,7 +212,11 @@ function setupEventListeners() {
 // Toggles tasks modal
 // Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) {
-  modal.style.display = show ? 'block' => 'none'; 
+  if (typeof show === 'boolean' && modal instanceof HTMLElement) {
+      modal.style.display = show ? 'block' : 'none';
+  } else {
+      console.error('Invalid arguments');
+  }
 }
 
 /*************************************************************************************************************************************************
