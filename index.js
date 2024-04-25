@@ -51,17 +51,20 @@ let activeBoard = ""
 // TASK: FIX BUGS
 function fetchAndDisplayBoardsAndTasks() {
   const tasks = getTasks();
-  const boards = [...new Set(tasks.map(task => task.board).filter(Boolean))];
-  displayBoards(boards);
-  if (boards.length > 0) {
-    const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"))
-    activeBoard = localStorageBoard ? localStorageBoard ;  boards[0]; 
-    elements.headerBoardName.textContent = activeBoard
-    styleActiveBoard(activeBoard)
-    refreshTasksUI();
+  if (Array.isArray(tasks) && tasks.length > 0) {
+      const boards = [...new Set(tasks.map(task => task.board).filter(Boolean))];
+      displayBoards(boards);
+      if (boards.length > 0) {
+          const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"));
+          activeBoard = localStorageBoard ? localStorageBoard : boards[0];
+          elements.headerBoardName.textContent = activeBoard;
+          styleActiveBoard(activeBoard);
+          refreshTasksUI();
+      }
+  } else {
+      console.error('Invalid tasks');
   }
 }
-
 // Creates different boards in the DOM
 // TASK: Fix Bugs
 function displayBoards(boards) {
