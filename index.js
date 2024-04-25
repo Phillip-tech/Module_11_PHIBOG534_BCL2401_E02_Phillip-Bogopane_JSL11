@@ -276,11 +276,14 @@ function saveTaskChanges(taskId) {
   let newDescription = document.getElementById("edit-task-desc-input").value;
   let newStatus = document.getElementById("edit-select-status").value;
 
-
-
   // Create an object with the updated task details
+     // Create an object with the updated task details
 
-
+     const updatedTask = {
+      title: newTitle,
+      description: newDescription,
+      status: newStatus,
+      board: activeBoard,
   // Update task using a hlper function
  
 
