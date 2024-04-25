@@ -97,33 +97,41 @@ function filterAndDisplayTasksByBoard(boardName) {
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
-  elements.columnDivs.forEach(column => {
-    const status = column.getAttribute("data-status");
-    // Reset column content while preserving the column title
-    column.innerHTML = `<div class="column-head-div">
-                          <span class="dot" id="${status}-dot"></span>
-                          <h4 class="columnHeader">${status.toUpperCase()}</h4>
-                        </div>`;
-
-    const tasksContainer = document.createElement("div");
-    column.appendChild(tasksContainer);
-
-    filteredTasks.filter(task => task.status = status).forEach(task => { 
-      const taskElement = document.createElement("div");
-      taskElement.classList.add("task-div");
-      taskElement.textContent = task.title;
-      taskElement.setAttribute('data-task-id', task.id);
-
-      // Listen for a click event on each task and open a modal
-      taskElement.click() => { 
-        openEditTaskModal(task);
+ // Filters tasks corresponding to the board name and displays them on the DOM.
+function filterAndDisplayTasksByBoard(boardName) {
+  const tasks = getTasks();
+  if (Array.isArray(tasks) && tasks.length > 0) {
+      const filteredTasks = tasks.filter(task => task.board === boardName);
+      elements.columnDivs.forEach(column => {
+          const status = column.getAttribute("data-status");
+          // Reset column content while preserving the column title
+          column.innerHTML = `<div class="column-head-div">
+                                  <span class="dot" id="${status}-dot"></span>
+                                  <h4 class="columnHeader">${status.toUpperCase()}</h4>
+                              </div>`;
+          const tasksContainer = document.createElement("div");
+          tasksContainer.className = 'tasks-container';
+          column.appendChild(tasksContainer);
+          filteredTasks.filter(task => task.status === status).forEach(task => {
+              if (typeof task === 'object' && task !== null && typeof task.title === 'string' && task.title.trim().length > 0) {
+                  const taskElement = document.createElement("div");
+                  taskElement.classList.add("task-div");
+                  taskElement.textContent = task.title;
+                  taskElement.setAttribute('data-task-id', task.id);
+                  taskElement.addEventListener('click', () => {
+          // Listen for a click event on each task and open a modal
+                      openEditTaskModal(task);
+                  });
+                  tasksContainer.appendChild(taskElement);
+              } else {
+                  console.error('Invalid task');
+              }
+          });
       });
-
-      tasksContainer.appendChild(taskElement);
-    });
-  });
+  } else {
+      console.error('Invalid tasks');
+  }
 }
-
 
 function refreshTasksUI() {
   filterAndDisplayTasksByBoard(activeBoard);
