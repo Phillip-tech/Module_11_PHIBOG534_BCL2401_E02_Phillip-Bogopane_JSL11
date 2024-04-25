@@ -7,14 +7,16 @@ This project is a task management application that allows users to create, edit,
 
 The task management application allows users to create tasks and organize them by boards. Users can add tasks with titles, descriptions, and statuses. Tasks can be filtered and displayed based on the selected board. The application also supports editing and deleting tasks.
 
-Reflections
-During the development of this task management application, we encountered various challenges such as ensuring data consistency, handling user inputs effectively, and managing UI updates based on user interactions. By utilizing helper functions and event listeners, we were able to overcome these challenges and create a functional task management system.
+## Reflections
+
+During the development of this task management application,I encountered various challenges such as ensuring data consistency, handling user inputs effectively, and managing UI updates based on user interactions. By utilizing helper functions and event listeners, we were able to overcome these challenges and create a functional task management system.
 
 ## Technologies Used
 
 HTML
 CSS
 JavaScript
+Github
 
 ## Usage
 
