@@ -272,12 +272,16 @@ function openEditTaskModal(task) {
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
-  
+  let newTitle = document.getElementById("edit-task-title-input").value;
+  let newDescription = document.getElementById("edit-task-desc-input").value;
+  let newStatus = document.getElementById("edit-select-status").value;
+
+
 
   // Create an object with the updated task details
 
 
-  // Update task using a hlper functoin
+  // Update task using a hlper function
  
 
   // Close the modal and refresh the UI to reflect the changes
@@ -288,15 +292,15 @@ function saveTaskChanges(taskId) {
 /*************************************************************************************************************************************************/
 
 document.addEventListener('DOMContentLoaded', function() {
-  init(); // init is called after the DOM is fully loaded
+    init(); // init is called after the DOM is fully loaded
 });
 
 function init() {
-  initializeData();
-  setupEventListeners();
-  const showSidebar = localStorage.getItem('showSideBar') === 'true';
-  toggleSidebar(showSidebar);
-  const isLightTheme = localStorage.getItem('light-theme') === 'enabled';
-  document.body.classList.toggle('light-theme', isLightTheme);
-  fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
+    initializeData();
+    setupEventListeners();
+    const showSidebar = localStorage.getItem('showSideBar') === 'true';
+    toggleSidebar(showSidebar);
+    const isLightTheme = localStorage.getItem('light-theme') === 'enabled';
+    document.body.classList.toggle('light-theme', isLightTheme);
+    fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
