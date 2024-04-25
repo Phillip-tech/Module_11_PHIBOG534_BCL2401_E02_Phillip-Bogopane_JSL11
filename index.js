@@ -264,7 +264,7 @@ function openEditTaskModal(task) {
   // Call saveTaskChanges upon click of Save Changes button
  
 
-  // Delete task using a helper function and close the task modal
+
 
 
   // Delete task using a helper function and close the task modal
@@ -280,6 +280,7 @@ function openEditTaskModal(task) {
 console.error('Invalid task');
 }
 }
+
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
