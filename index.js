@@ -267,7 +267,18 @@ function openEditTaskModal(task) {
   // Delete task using a helper function and close the task modal
 
 
-  toggleModal(true, elements.editTaskModal); // Show the edit task modal
+  // Delete task using a helper function and close the task modal
+  deleteTaskBtn.addEventListener('click', () => {
+    if (confirm("Are you sure you want to delete this task?")) {
+        deleteTask(task.id);
+        toggleModal(false);
+        refreshTasksUI();
+    }
+});
+
+} else {
+console.error('Invalid task');
+}
 }
 
 function saveTaskChanges(taskId) {
@@ -284,14 +295,21 @@ function saveTaskChanges(taskId) {
       description: newDescription,
       status: newStatus,
       board: activeBoard,
-  // Update task using a hlper function
- 
+  
+    };
+    if (typeof updatedTask === 'object' && updatedTask !== null && typeof updatedTask.title === 'string' && updatedTask.title.trim().length > 0) {
+        // Update task using a helper function
+        // Update task using a hlper function
+        putTask(taskId, updatedTask);
 
-  // Close the modal and refresh the UI to reflect the changes
-
-  refreshTasksUI();
+        // Close the modal and refresh the UI to reflect the changes
+        // Close the modal and refresh the UI to reflect the changes
+        toggleModal(false);
+        refreshTasksUI();
+    } else {
+        console.error('Invalid updatedTask');
+    }
 }
-
 /*************************************************************************************************************************************************/
 
 document.addEventListener('DOMContentLoaded', function() {
