@@ -1,22 +1,22 @@
 
-Project Name
+## Project Name
 
 This project is a task management application that allows users to create, edit, and delete tasks organized by boards.
 
-Overview
+## Overview
 
 The task management application allows users to create tasks and organize them by boards. Users can add tasks with titles, descriptions, and statuses. Tasks can be filtered and displayed based on the selected board. The application also supports editing and deleting tasks.
 
 Reflections
 During the development of this task management application, we encountered various challenges such as ensuring data consistency, handling user inputs effectively, and managing UI updates based on user interactions. By utilizing helper functions and event listeners, we were able to overcome these challenges and create a functional task management system.
 
-Technologies Used
+## Technologies Used
 
 HTML
 CSS
 JavaScript
 
-Usage
+## Usage
 
 To use the task management application, follow these steps:
 
@@ -30,13 +30,14 @@ Styling Elements:
 
 The application uses CSS for styling elements and ensuring a visually appealing user interface.
 
-Challenges Faced
+## Challenges Faced
 
 One of the challenges faced during development was handling user inputs effectively and ensuring data integrity throughout the application.
 
-Areas for Improvement
+## Areas for Improvement
 
 In future iterations of the application, we aim to enhance the user experience by adding features such as drag-and-drop functionality for task organization and improved task filtering options.
 
-Overall Learning Experience
+## Overall Learning Experience
+
 Developing this task management application provided valuable insights into frontend development, JavaScript event handling, and data management. By working on this project, we gained practical experience in building interactive web applications and improving user interfaces.
