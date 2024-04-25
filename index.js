@@ -155,26 +155,19 @@ function styleActiveBoard(boardName) {
 
 
 function addTaskToUI(task) {
-  const column = document.querySelector('.column-div[data-status="${task.status}"]'); 
-  if (!column) {
-    console.error(`Column not found for status: ${task.status}`);
-    return;
+  const columnDiv = document.querySelector(`[data-status="${task.status}"] .tasks-container`);
+  if (columnDiv) {
+      const taskElement = document.createElement("div");
+      taskElement.classList.add("task-div");
+      taskElement.textContent = task.title;
+      taskElement.setAttribute('data-task-id', task.id);
+      taskElement.addEventListener('click', () => {
+          openEditTaskModal(task);
+      });
+      columnDiv.appendChild(taskElement);
+  } else {
+      console.error('Invalid status for task');
   }
-
-  let tasksContainer = column.querySelector('.tasks-container');
-  if (!tasksContainer) {
-    console.warn(`Tasks container not found for status: ${task.status}, creating one.`);
-    tasksContainer = document.createElement('div');
-    tasksContainer.className = 'tasks-container';
-    column.appendChild(tasksContainer);
-  }
-
-  const taskElement = document.createElement('div');
-  taskElement.className = 'task-div';
-  taskElement.textContent = task.title; // Modify as needed
-  taskElement.setAttribute('data-task-id', task.id);
-  
-  tasksContainer.appendChild(); 
 }
 
 
@@ -227,39 +220,65 @@ function toggleModal(show, modal = elements.modalWindow) {
  * **********************************************************************************************************************************************/
 
 function addTask(event) {
-  event.preventDefault(); 
+  event.preventDefault();
 
   //Assign user input to the task object
-    const task = {
-      
-    };
-    const newTask = createNewTask(task);
-    if (newTask) {
-      addTaskToUI(newTask);
-      toggleModal(false);
-      elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
-      event.target.reset();
-      refreshTasksUI();
-    }
+  const task = {
+      title: document.getElementById("title-input").value,
+      description: document.getElementById("desc-input").value,
+      status: document.getElementById("select-status").value,
+      board: activeBoard,
+
+  };
+  if (typeof task === 'object' && task !== null && 
+  typeof task.title === 'string' && task.title.trim().length > 0 &&
+  typeof task.description === 'string' && task.description.trim().length > 0) {
+      const newTask = createNewTask(task);
+      if (newTask) {
+          addTaskToUI(newTask);
+          toggleModal(false);
+          elements.filterDiv.style.display = 'none'; // Also hide the filter overlay
+          event.target.reset();
+          refreshTasksUI();
+      }
+  } else {
+      console.error('Invalid task: Title or Description cannot be empty');
+  }
 }
+
 
 
 function toggleSidebar(show) {
- 
+  if (typeof show === 'boolean') {
+      elements.sideBarDiv.style.display = show ? 'block' : 'none';
+      localStorage.setItem('showSideBar', show);
+      elements.showSideBarBtn.style.display = show ? 'none' : 'block';
+  } else {
+      console.error('Invalid arguments');
+  }
 }
 
 function toggleTheme() {
- 
+  document.body.classList.toggle('light-theme');
+  const isLightTheme = document.body.classList.contains('light-theme');
+  localStorage.setItem('light-theme', isLightTheme ? 'enabled' : 'disabled');
 }
 
 
 
-function openEditTaskModal(task) {
-  // Set task details in modal inputs
-  
+
+  function openEditTaskModal(task) {
+    if (typeof task === 'object' && task !== null && typeof task.title === 'string' && task.title.trim().length > 0) {
+        // Set task details in modal inputs
+        document.getElementById("edit-btn").value = task.title;
+        document.getElementById("edit-task-desc-input").value= task.description;
+        document.getElementById("edit-select-status").value = task.status;
+
+        toggleModal(true, elements.editTaskModal); // Show the edit task modal
+
 
   // Get button elements from the task modal
-  
+
   const saveTaskChangesBtn = document.getElementById('save-task-changes-btn');
   const deleteTaskBtn = document.getElementById('delete-task-btn');
 
