@@ -27,7 +27,21 @@ function initializeData() {
 
 
 // TASK: Get elements from the DOM
+// Get elements from the DOM
+
 const elements = {
+  
+  headerBoardName: document.querySelector('.header-board-name'),
+  boardsNavLinksDiv: document.getElementById("boards-nav-links-div"),
+  columnDivs: document.querySelectorAll('.column-div'),
+  filterDiv: document.getElementById('filterDiv'),
+  modalWindow: document.getElementById('new-task-modal-window'),
+  editTaskModal: document.querySelector('.edit-task-modal-window'),
+  themeSwitch: document.getElementById('switch'),
+  createNewTaskBtn: document.getElementById('add-new-task-btn'),
+  hideSideBarBtn: document.getElementById('hide-side-bar-btn'),
+  showSideBarBtn: document.getElementById('show-side-bar-btn'),
+  sideBarDiv: document.getElementById('side-bar-div'),
 
 }
 
