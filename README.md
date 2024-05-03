@@ -12,6 +12,8 @@ The task management application allows users to create tasks and organize them b
 
 During the development of this task management application,I encountered various challenges such as ensuring data consistency, handling user inputs effectively, and managing UI updates based on user interactions. By utilizing helper functions and event listeners, we were able to overcome these challenges and create a functional task management system.
 
+
+
 ## Technologies Used
 
 HTML
@@ -29,7 +31,8 @@ Edit tasks by clicking on a task and making changes in the modal.
 Delete tasks by clicking on the "Delete" button in the edit task modal.
 Toggle the sidebar visibility using the sidebar buttons.
 Switch between light and dark themes using the theme switch.
-Styling Elements:
+
+## Styling Elements:
 
 The application uses CSS for styling elements and ensuring a visually appealing user interface.
 

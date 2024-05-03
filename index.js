@@ -42,6 +42,7 @@ const elements = {
   hideSideBarBtn: document.getElementById('hide-side-bar-btn'),
   showSideBarBtn: document.getElementById('show-side-bar-btn'),
   sideBarDiv: document.getElementById('side-bar-div'),
+  logo:document.getElementById('logo')
 
 }
 
@@ -254,12 +255,24 @@ function toggleSidebar(show) {
   }
 }
 
-function toggleTheme() {
-  document.body.classList.toggle('light-theme');
-  const isLightTheme = document.body.classList.contains('light-theme');
-  localStorage.setItem('light-theme', isLightTheme ? 'enabled' : 'disabled');
-}
 
+
+
+function toggleTheme() {
+    document.body.classList.toggle('light-theme');
+    const isLightTheme = document.body.classList.contains('light-theme');
+    console.log("Light theme is now", isLightTheme ? "enabled" : "disabled");
+    localStorage.setItem('light-theme', isLightTheme ? 'enabled' : 'disabled');
+    logo.src = isLightTheme ? './assets/logo-light.svg' : './assets/logo-dark.svg';
+
+}
+/*
+function createThemeToggleIndicator() {
+    const themeIndicator = document.createElement('div');
+    themeIndicator.id = 'theme-indicator';
+    themeIndicator.textContent = document.body.classList.contains('light-theme') ? 'Light Mode' : 'Dark Mode';
+    document.body.appendChild(themeIndicator);
+}*/
 
 
 
@@ -344,3 +357,6 @@ function init() {
     document.body.classList.toggle('light-theme', isLightTheme);
     fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
 }
+
+
+
