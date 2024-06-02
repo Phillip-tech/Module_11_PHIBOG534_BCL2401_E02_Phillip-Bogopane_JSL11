@@ -47,3 +47,5 @@ In future iterations of the application, we aim to enhance the user experience b
 ## Overall Learning Experience
 
 Developing this task management application provided valuable insights into frontend development, JavaScript event handling, and data management. By working on this project, we gained practical experience in building interactive web applications and improving user interfaces.
+
+switch.checked = isLightTheme 

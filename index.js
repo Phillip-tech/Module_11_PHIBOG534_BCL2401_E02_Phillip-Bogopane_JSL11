@@ -187,7 +187,7 @@ function setupEventListeners() {
   elements.showSideBarBtn.addEventListener('click', () => toggleSidebar(true));
 
   // Theme switch event listener
-  elements.themeSwitch.addEventListener('change', toggleTheme);
+  elements.themeSwitch.addEventListener('click', toggleTheme);
 
   // Show Add New Task Modal event listener
   elements.createNewTaskBtn.addEventListener('click', () => {
@@ -257,29 +257,32 @@ function toggleSidebar(show) {
 
 
 
-
 function toggleTheme() {
     document.body.classList.toggle('light-theme');
     const isLightTheme = document.body.classList.contains('light-theme');
     console.log("Light theme is now", isLightTheme ? "enabled" : "disabled");
     localStorage.setItem('light-theme', isLightTheme ? 'enabled' : 'disabled');
     logo.src = isLightTheme ? './assets/logo-light.svg' : './assets/logo-dark.svg';
+    elements.themeSwitch.checked = isLightTheme ? true : false;
+    
 
 }
+
+
 /*
 function createThemeToggleIndicator() {
     const themeIndicator = document.createElement('div');
     themeIndicator.id = 'theme-indicator';
     themeIndicator.textContent = document.body.classList.contains('light-theme') ? 'Light Mode' : 'Dark Mode';
     document.body.appendChild(themeIndicator);
-}*/
-
+}
+  */
 
 
   function openEditTaskModal(task) {
     if (typeof task === 'object' && task !== null && typeof task.title === 'string' && task.title.trim().length > 0) {
         // Set task details in modal inputs
-        document.getElementById("edit-btn").value = task.title;
+        document.getElementById("edit-task-title-input").value = task.title;
         document.getElementById("edit-task-desc-input").value= task.description;
         document.getElementById("edit-select-status").value = task.status;
 
@@ -291,11 +294,9 @@ function createThemeToggleIndicator() {
   const saveTaskChangesBtn = document.getElementById('save-task-changes-btn');
   const deleteTaskBtn = document.getElementById('delete-task-btn');
 
-
   // Call saveTaskChanges upon click of Save Changes button
 
   saveTaskChangesBtn.addEventListener('click', () => saveTaskChanges(task.id));
-
 
 
   // Delete task using a helper function and close the task modal
@@ -322,19 +323,21 @@ function saveTaskChanges(taskId) {
   // Create an object with the updated task details
      // Create an object with the updated task details
 
-     const updatedTask = {
+     const updatedTask =
+      {
       title: newTitle,
       description: newDescription,
       status: newStatus,
       board: activeBoard,
   
-    };
+     };
+
+
     if (typeof updatedTask === 'object' && updatedTask !== null && typeof updatedTask.title === 'string' && updatedTask.title.trim().length > 0) {
-        // Update task using a helper function
+    
         // Update task using a hlper function
         putTask(taskId, updatedTask);
 
-        // Close the modal and refresh the UI to reflect the changes
         // Close the modal and refresh the UI to reflect the changes
         toggleModal(false);
         refreshTasksUI();
@@ -355,7 +358,10 @@ function init() {
     toggleSidebar(showSidebar);
     const isLightTheme = localStorage.getItem('light-theme') === 'enabled';
     document.body.classList.toggle('light-theme', isLightTheme);
+    elements.themeSwitch.checked = isLightTheme ? true : false;
+    logo.src = isLightTheme ? './assets/logo-light.svg' : './assets/logo-dark.svg';
     fetchAndDisplayBoardsAndTasks(); // Initial display of boards and tasks
+    
 }
 
 
